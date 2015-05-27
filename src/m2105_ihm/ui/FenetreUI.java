@@ -41,7 +41,8 @@ public class FenetreUI extends JFrame {
         this.controleur = controleur;
         
         menuFichier = new JMenuItem[2];
-        menuContacts = new JMenuItem[6];
+        menuContacts = new JMenuItem[4];
+        menuEvenements = new JMenuItem[2];
                 
         initMenus();
         initUIComponents();
@@ -54,6 +55,7 @@ public class FenetreUI extends JFrame {
         barreMenu = new JMenuBar();
         barreMenu.add(initMenuFichier());
         barreMenu.add(initMenuContacts());
+        barreMenu.add(initMenuEvenements());
         this.setJMenuBar(barreMenu);   
     }
 
@@ -139,25 +141,7 @@ public class FenetreUI extends JFrame {
         });
         menu.add(menuContacts[3]);
         
-        menuContacts[4] = new JMenuItem("Créer Evenement");
-        menuContacts[4].addActionListener( new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controleur.creerEvenement();
-            }
-        });
-        menu.add(menuContacts[4]);
         
-        menuContacts[5] = new JMenuItem("Supprimer Evenement");
-        menuContacts[5].addActionListener( new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controleur.supprimerEvenement();
-            }
-        });
-        menu.add(menuContacts[5]);
         
         return menu;
     }
@@ -166,10 +150,29 @@ public class FenetreUI extends JFrame {
      * Crée un menu pour la gestion des évènements
      */
     private JMenu initMenuEvenements() {
+        JMenu menu = new JMenu("Evenements");
         
-        /* A compléter mini Projet */
+        menuEvenements[0] = new JMenuItem("Créer Evenement");
+        menuEvenements[0].addActionListener( new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controleur.creerEvenement();
+            }
+        });
+        menu.add(menuEvenements[0]);
         
-        return null;
+        menuEvenements[1] = new JMenuItem("Supprimer Evenement");
+        menuEvenements[1].addActionListener( new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controleur.supprimerEvenement();
+            }
+        });
+        menu.add(menuEvenements[1]);
+        
+        return menu;
     }    
     
     /**
