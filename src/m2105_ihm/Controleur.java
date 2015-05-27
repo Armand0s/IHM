@@ -7,6 +7,8 @@ import m2105_ihm.nf.Contact;
 import m2105_ihm.nf.GroupeContacts;
 import m2105_ihm.nf.NoyauFonctionnel;
 import m2105_ihm.nf.Evenement;
+import m2105_ihm.nf.Mois;
+import m2105_ihm.nf.Region;
 
 import m2105_ihm.ui.CarnetUI;
 import m2105_ihm.ui.FenetreUI;
@@ -30,6 +32,7 @@ public class Controleur {
     private CarnetUI carnetUI;
     private FenetreUI fenetre;
     private PlanningUI planningUI;
+    private BoiteDialogUI boiteUI;
 
     /**
      * Constructeur de la fenêtre principale
@@ -44,7 +47,16 @@ public class Controleur {
      */
     public void creerContact() {
         
-        /** TP5 : à compléter **/
+        Contact c = new Contact();
+        
+        c.setDateNaissance(1, Mois.JANVIER, 1900);
+        c.setNom("Nouveau");
+        c.setPrenom("Contact");
+        c.setNumeroTelephone("");
+        c.setEmail("");
+        c.setRegion(Region.ALSACE);
+        carnetUI.ajouterContact(c);
+        nf.addContact(c);
         
     }
 
@@ -53,8 +65,10 @@ public class Controleur {
      */
     public void supprimerContact() {
         
-        /** TP5 : à compléter **/
         
+        if (boiteUI.afficherConfirmation(fenetre,carnetUI.getSelectedContact())) {
+        carnetUI.retirerContact(carnetUI.getSelectedContact());
+        }
     }
     
     /**
@@ -62,8 +76,11 @@ public class Controleur {
      */
     public void creerGroupe() {
         
-        /** TP5 : à compléter **/
-              
+        GroupeContacts g = new GroupeContacts();
+        
+        g.setNom("Nouveau Groupe");
+        
+        carnetUI.ajouterGroupe(g);
     }
 
     /**
@@ -71,8 +88,11 @@ public class Controleur {
      */
     public void supprimerGroupe() {
         
-        /** TP5 : à compléter **/
         
+        
+        if (boiteUI.afficherConfirmation(fenetre,carnetUI.getSelectedGroupe())) {
+        carnetUI.retirerGroupe(carnetUI.getSelectedGroupe());
+        }
     }
     
     /**
@@ -116,6 +136,7 @@ public class Controleur {
      */
     public void enregistrer() {
         nf.updateDB();
+        
     }    
         
     /**
