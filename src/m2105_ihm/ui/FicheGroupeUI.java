@@ -29,7 +29,7 @@ public class FicheGroupeUI extends javax.swing.JPanel {
     private JLabel labNomG;
     private JTable tabContact;
     private JTextField txNomG;
-    private JButton btEffacer;
+    public JButton btEffacer;
     public JButton btValider;
     private DefaultTableModel model = new DefaultTableModel(); 
     
@@ -138,7 +138,13 @@ public class FicheGroupeUI extends javax.swing.JPanel {
         /*
          * Réagit aux évènements produits par le bouton effacer
          */
-        
+         btEffacer.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carnet.setGroupeModified(false);
+            }
+        });
         btValider.addActionListener(new ActionListener() {
 
             @Override

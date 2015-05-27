@@ -29,6 +29,7 @@ public class FicheContactUI extends JPanel {
     private JPanel           panelnom;
     private JPanel           panelprenom;
     
+    private Integer[]        jours;
     private JPanel           paneldate;
     private JPanel           paneldateLabel;
     private JPanel           paneldatechamp;
@@ -73,11 +74,17 @@ public class FicheContactUI extends JPanel {
     private JCheckBox        chSpor;
     private HashMap<Hobby,JCheckBox> hashHobby;
     
-    private JButton          buttonModifier;
+    private JButton          buttonValider;
     private JButton          buttonAnnuler;
     
     
-    
+    public Integer[] limJour(){
+        Integer[] j = new Integer[31];
+        for(int i=0; i<31; i++){
+            j[i]=i+1;
+        }
+        return j;
+    }
     /**
      * Formulaire pour saisir les informations relatives à un contact
      */
@@ -138,12 +145,8 @@ public class FicheContactUI extends JPanel {
         //// PANEL DATE /////
         /////////////////////
         
-        
-        String[] jours = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-        
+        jours = limJour();
         list_jour = new JComboBox(jours);
-        
-        
         
        
         Mois[] mois = Mois.values();
@@ -169,9 +172,9 @@ public class FicheContactUI extends JPanel {
        
        
         
-        ///////////////////////////////////
-        //////// PANEL PERIFERIQUE ////////
-        ///////////////////////////////////
+        ////////////////////////////////////
+        //////// PANEL PERIPHERIQUE ////////
+        ////////////////////////////////////
         
         
         champTel = new JTextField(30);
@@ -244,9 +247,11 @@ public class FicheContactUI extends JPanel {
         paneldate.add(paneldateLabel,BorderLayout.NORTH);
         paneldate.add(paneldatechamp,BorderLayout.CENTER);
         
-        buttonModifier = new JButton("Valider");
+        buttonValider = new JButton("Valider");
+        panelperi.add(buttonValider,c);
         
-        panelperi.add(buttonModifier,c);
+        buttonAnnuler = new JButton("Annuler");
+        panelperi.add(buttonAnnuler,c);
         
         
         
@@ -327,7 +332,7 @@ public class FicheContactUI extends JPanel {
             }
         }
         
-        buttonModifier = new JButton("Is JCheckBox selected?");
+        buttonValider = new JButton("Is JCheckBox selected?");
         
         
 
@@ -340,9 +345,15 @@ public class FicheContactUI extends JPanel {
     private void initListeners() {
         /** TP 5 : à compléter **/ 
         
+        buttonAnnuler.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carnet.setContactModified(false);
+            }
+        });
         
-        
-        buttonModifier.addActionListener(new ActionListener() {
+        buttonValider.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
