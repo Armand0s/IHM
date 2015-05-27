@@ -206,6 +206,7 @@ public class NoyauFonctionnel {
      * @return 
      */
     public boolean updateDB() {
+        
         return saveDB();
     }
 
@@ -230,6 +231,7 @@ public class NoyauFonctionnel {
         
         file = new File(path + DB_FILE);
         try {
+            
             fos = new FileOutputStream(file);
             oos = new ObjectOutputStream(fos);
             
