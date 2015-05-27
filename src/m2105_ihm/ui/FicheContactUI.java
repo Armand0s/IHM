@@ -280,13 +280,13 @@ public class FicheContactUI extends JPanel {
         list_mois.setSelectedItem(contact.getDateNaissanceMois());
         list_annee.setSelectedItem("" +contact.getDateNaissanceAnnee());
         list_reg.setSelectedItem(contact.getRegion());
-        System.out.println(contact.getNom());
+        //System.out.println(contact.getNom());
         
         for(JCheckBox J : hashHobby.values()) {
             J.setSelected(false);
         }
         for (Hobby h : contact.getHobbies()) {
-            System.out.println(h.toString());
+            //System.out.println(h.toString());
             hashHobby.get(h).setSelected(true);
         }
         
