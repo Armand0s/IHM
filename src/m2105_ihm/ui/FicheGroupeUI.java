@@ -72,7 +72,7 @@ public class FicheGroupeUI extends javax.swing.JPanel {
         
         this.add(labNomG);
         this.add(txNomG);
-        this.add(tabContact.getTableHeader());
+        //this.add(tabContact.getTableHeader());
         this.add(tabContact);
         
         
