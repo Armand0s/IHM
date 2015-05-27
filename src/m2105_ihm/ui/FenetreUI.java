@@ -181,7 +181,8 @@ public class FenetreUI extends JFrame {
     public void afficher() {
         setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         setSize(600, 700);
-        setVisible(true);                        
+        setVisible(true);   
+        this.setResizable(false);
     }
     
     /**
@@ -246,9 +247,9 @@ public class FenetreUI extends JFrame {
     private void setMenuEnabled(int menuId, boolean enabled) {
         switch(menuId) {
             case MENU_CONTACTS:
-                 setMenuEntryEnabled(MENU_CONTACTS, 0, enabled);
-                 setMenuEntryEnabled(MENU_CONTACTS, 1, enabled);
-                 setMenuEntryEnabled(MENU_CONTACTS, 2, enabled &    contactSelected);
+                 setMenuEntryEnabled(MENU_CONTACTS, 0, enabled); // Créer contact
+                 setMenuEntryEnabled(MENU_CONTACTS, 1, enabled & ( contactSelected)); // Supprimer contact
+                 setMenuEntryEnabled(MENU_CONTACTS, 2, enabled ); // Créer
                  setMenuEntryEnabled(MENU_CONTACTS, 3, enabled & (! contactSelected));
                  setMenuEntryEnabled(MENU_CONTACTS, 4, enabled &    contactSelected);
                  setMenuEntryEnabled(MENU_CONTACTS, 5, enabled &    contactSelected);                 
