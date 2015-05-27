@@ -50,9 +50,25 @@ public class BoiteDialogUI {
     public static boolean afficherConfirmation(JFrame fenetre, GroupeContacts g) {
         boolean res = false;
 
-        /** TP5 : à compléter **/
+
+        if (g != null) {
+            String [] choix = new String[] { "Supprimer", "Annuler" }; 
+            
+            Object selectedValue = JOptionPane.showOptionDialog(fenetre,
+                  "Voulez-vous vraiment supprimer le groupe : " 
+                  + g.getNom() + " ?", 
+                  "Suppression d'un groupe",
+                  JOptionPane.DEFAULT_OPTION,
+                  JOptionPane.QUESTION_MESSAGE, 
+                  null,
+                  choix,
+                  choix[1]);
+            res = (((Integer) selectedValue) == 0);
+        }
         
         return res;
+        
+        
     }
 
     /**
