@@ -67,8 +67,9 @@ public class Controleur {
         
         
         if (boiteUI.afficherConfirmation(fenetre,carnetUI.getSelectedContact())) {
-        carnetUI.retirerContact(carnetUI.getSelectedContact());
         nf.removeContact(carnetUI.getSelectedContact());
+        carnetUI.retirerContact(carnetUI.getSelectedContact());
+        
         }
     }
     
@@ -92,8 +93,9 @@ public class Controleur {
         
         
         if (boiteUI.afficherConfirmation(fenetre,carnetUI.getSelectedGroupe())) {
-        carnetUI.retirerGroupe(carnetUI.getSelectedGroupe());
         nf.removeGroupe(carnetUI.getSelectedGroupe());
+        carnetUI.retirerGroupe(carnetUI.getSelectedGroupe());
+        
         }
     }
     
