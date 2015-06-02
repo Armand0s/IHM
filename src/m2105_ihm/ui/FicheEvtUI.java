@@ -36,7 +36,7 @@ public class FicheEvtUI extends javax.swing.JPanel {
     private void initListeners() {
         
         /** Projet : à compléter **/
-        
+
     }
     
     /**
@@ -45,7 +45,7 @@ public class FicheEvtUI extends javax.swing.JPanel {
     private void initUIComponents() {
         
         /** Projet : à compléter **/    
-  
+        
     }
 
     /**
