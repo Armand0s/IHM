@@ -26,7 +26,7 @@ public class CarnetUI extends JPanel {
     private CardLayout             fiches;
     private JPanel                 cardPanel;    
     private ListeContacts          listeContacts;
-
+    
     private FicheGroupeUI          ficheGroupe;    
     private FicheContactUI         ficheContact;
         
@@ -55,7 +55,7 @@ public class CarnetUI extends JPanel {
          */
         listeContacts = new ListeContacts(this);
         listeContacts.setBorder(BorderFactory.createTitledBorder("Contacts et groupes"));
-        
+          
         /* 
          * Ajout des fiches avec commutation grace au layout
          */
@@ -181,6 +181,6 @@ public class CarnetUI extends JPanel {
     public void show() {
         super.show();
         listeContacts.showAll();
-        listeContacts.selectFirstContact();        
+        listeContacts.selectFirstContact();    
     }
 }
