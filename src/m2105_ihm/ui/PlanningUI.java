@@ -12,6 +12,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.tree.TreeSelectionModel;
@@ -29,6 +30,7 @@ public class PlanningUI extends JPanel {
      */
     private Controleur       controleur;
     private FicheEvtUI       ficheEvt;
+    private JTextField          calendar = new CalendarUI();
 
     /** 
      * Constructeur : initialise les composants de l'IHM pour les événements
@@ -52,6 +54,7 @@ public class PlanningUI extends JPanel {
         ficheEvt = new FicheEvtUI(this);
      
         this.add(new javax.swing.JLabel("Evenements"));     
+        this.add(calendar);
     }
     
     /**
