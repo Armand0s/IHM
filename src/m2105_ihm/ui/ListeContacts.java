@@ -138,7 +138,7 @@ public class ListeContacts extends javax.swing.JPanel  {
 	listeDefilante.getViewport().add(listeContacts);
         
         setLayout(new BorderLayout());
-        add(listeDefilante, BorderLayout.CENTER);        
+        add(listeDefilante, BorderLayout.NORTH);        
     }
 
     /**
