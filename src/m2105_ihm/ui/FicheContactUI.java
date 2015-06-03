@@ -311,7 +311,7 @@ public class FicheContactUI extends JPanel {
         contact.setNom(champNom.getText());     
         contact.setPrenom(champPre.getText());
         
-        int jour = (int) list_jour.getSelectedItem();
+        int jour = list_jour.getSelectedIndex()+1;
         Mois mois = (Mois) list_mois.getSelectedItem();
         
         int annee = list_annee.getSelectedIndex() +1865;
