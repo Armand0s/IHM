@@ -5,10 +5,13 @@ package m2105_ihm.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import m2105_ihm.nf.Contact;
 import m2105_ihm.nf.GroupeContacts;
+import m2105_ihm.nf.Symbole;
 
 /**
  *
@@ -25,13 +28,19 @@ public class FicheGroupeUI extends javax.swing.JPanel {
     private ZoneDessinUI zoneDessin;
     
     
+    private String[]     colonnes = {"Nom","Prenom","Telephone"};
+    private JTextField   txNomG;
+    private JLabel       labNomG;
     
-    private JLabel labNomG;
-    private JTable tabContact;
-    private JTextField txNomG;
-    public JButton btEffacer;
-    public JButton btValider;
+    private JTable       tabContact;
     private DefaultTableModel model = new DefaultTableModel(); 
+    
+    private ButtonGroup  symboleGroup;
+    private HashMap<Symbole, JCheckBox> checkboxes = new HashMap();
+    
+    public JButton       btEffacer;
+    public JButton       btValider;
+
     
     /**
      * Creates new form CarnetUI
@@ -52,17 +61,16 @@ public class FicheGroupeUI extends javax.swing.JPanel {
         
         /** TP 2 : à compléter **/
         
+        // Nom groupe
         labNomG = new JLabel("Nom du groupe");
-        
         txNomG = new JTextField(20);
-
-        String[] colonnes =  { "Nom", "Prenom" }; 
         
+        /* Table */
+        model = new DefaultTableModel(); 
         model.setColumnIdentifiers(colonnes);
-        //String[] st = {"a","b"};
-        //model.addRow(st);
         tabContact = new JTable(model);
-        
+        add(tabContact.getTableHeader());
+        add(tabContact);
         
         btValider = new JButton("Valider");
         btEffacer = new JButton("Effacer");
@@ -74,10 +82,18 @@ public class FicheGroupeUI extends javax.swing.JPanel {
         this.add(txNomG);
         //this.add(tabContact.getTableHeader());
         this.add(tabContact);
-        
-        
-        
         this.add(zoneDessin);
+        
+        /* Check box symboles */
+        symboleGroup = new ButtonGroup();
+        for (Symbole s : Symbole.values()){
+            checkboxes.put(s, new JCheckBox(s.toString()));
+            symboleGroup.add(checkboxes.get(s));
+            this.add(checkboxes.get(s));
+        }
+        
+        
+
         this.add(btValider);
         this.add(btEffacer);
                 
@@ -95,17 +111,30 @@ public class FicheGroupeUI extends javax.swing.JPanel {
         if (groupe == null) {return false; }
         
         /** TP 2 : à compléter **/
-        String[] values = new String[2];
-        Contact[] ct = groupe.getContacts();
+        /* JTable */
+        String [] obj = new String[3];
+       
         model.setRowCount(0);
-        for(int i =0; i<groupe.getContacts().length;i++) {
+        for (Contact contact : groupe.getContacts()) {
+            obj[0]=contact.getNom();
+            obj[1]=contact.getPrenom();
+            obj[2]=contact.getNumeroTelephone();
             
-            values[0] = ct[i].getNom();
-            values[1] = ct[i].getPrenom();
-            model.addRow(values);
+            model.addRow(obj);
         }
         
         txNomG.setText(groupe.getNom());
+        
+        /* Symbole */
+        ButtonModel selection = symboleGroup.getSelection();
+        for (Symbole s : Symbole.values()){
+            if (Arrays.asList(groupe.getSymboles()).contains(s)){
+                checkboxes.get(s).setSelected(true);
+            } else {
+                checkboxes.get(s).setSelected(false);
+            }
+            
+        }
         
         return true;
     }
