@@ -3,6 +3,10 @@
  */
 package m2105_ihm.ui;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
@@ -36,10 +40,19 @@ public class FicheGroupeUI extends javax.swing.JPanel {
     private DefaultTableModel model = new DefaultTableModel(); 
     
     private ButtonGroup  symboleGroup;
-    private HashMap<Symbole, JCheckBox> checkboxes = new HashMap();
+    private HashMap<Symbole, JRadioButton> checkboxes = new HashMap();
     
     public JButton       btEffacer;
     public JButton       btValider;
+    
+    
+    private JPanel      panelLogo;
+    private JPanel      panelInfo;
+    private JPanel      panelContact;
+    private JPanel      panelSymboleGlobal;
+    private JPanel      panelSymbole1;
+    private JPanel      panelSymbole2;
+    private JPanel      panelBouton;
 
     
     /**
@@ -58,49 +71,112 @@ public class FicheGroupeUI extends javax.swing.JPanel {
      * Crée et positionne les composants graphiques constituant l'interface
      */
     private void initUIComponents() {
+        panelLogo = new JPanel();
+        panelInfo = new JPanel();
+        panelContact = new JPanel();
+        panelSymboleGlobal = new JPanel();
+        panelSymbole1 = new JPanel();
+        panelSymbole2 = new JPanel();
+        panelBouton = new JPanel();
         
-        /** TP 2 : à compléter **/
+        panelLogo.setLayout(new GridBagLayout());
+        panelInfo.setLayout(new GridBagLayout());
+        panelContact.setLayout(new GridBagLayout());
+        panelSymboleGlobal.setLayout(new GridBagLayout());
+        panelSymbole1.setLayout(new GridBagLayout());
+        panelSymbole2.setLayout(new GridBagLayout());
+        panelBouton.setLayout(new GridBagLayout());
         
-        // Nom groupe
+        GridBagConstraints c = new GridBagConstraints();
+        c.ipady=5;
+        c.gridx=1;
+        
+        //////////////////////////////////////////
+        /////////////// PANEL LOGO ///////////////
+        //////////////////////////////////////////
+        zoneDessin = new ZoneDessinUI();
+        panelLogo.add(zoneDessin,c);
+        
+
+        //////////////////////////////////////////
+        ////////// PANEL INFO NOM GROUPE /////////
+        //////////////////////////////////////////
         labNomG = new JLabel("Nom du groupe");
         txNomG = new JTextField(20);
+        panelInfo.add(labNomG,c);
+        panelInfo.add(txNomG,c);
         
-        /* Table */
+        
+        //////////////////////////////////////////
+        ///////////// PANEL TABLE ////////////////
+        //////////////////////////////////////////
         model = new DefaultTableModel(); 
         model.setColumnIdentifiers(colonnes);
         tabContact = new JTable(model);
-        add(tabContact.getTableHeader());
-        add(tabContact);
+        panelContact.add(tabContact.getTableHeader(),c);
+        panelContact.add(tabContact,c);
         
+        
+        //////////////////////////////////////////
+        ///////////// PANEL SYMBOLE //////////////
+        //////////////////////////////////////////
+        symboleGroup = new ButtonGroup();
+        int indice = 0;
+        for (Symbole s : Symbole.values()){
+            checkboxes.put(s, new JRadioButton(s.toString()));
+            symboleGroup.add(checkboxes.get(s));
+            if (indice < Symbole.values().length/2) {
+                c.gridy=indice;
+                panelSymbole1.add(checkboxes.get(s), c);
+            } else {
+                c.gridy=indice - Symbole.values().length/2;
+                panelSymbole2.add(checkboxes.get(s), c);
+            }
+            indice++;
+        }
+        
+        panelSymboleGlobal.add(panelSymbole1);
+        panelSymboleGlobal.add(panelSymbole2);
+        
+        
+        //////////////////////////////////////////
+        ////////////// PANEL BOUTON //////////////
+        //////////////////////////////////////////
         btValider = new JButton("Valider");
         btEffacer = new JButton("Effacer");
+        panelBouton.add(btValider);
+        panelBouton.add(btEffacer);
         
-        zoneDessin = new ZoneDessinUI();
+
+        c.gridy=1;
+        c.gridx=1;
+        this.add(panelLogo,c);
+        c.gridy=2;
+        this.add(panelInfo,c);
+        c.gridy=3;
+        this.add(panelContact,c);
+        c.gridy=4;
+        this.add(panelSymboleGlobal,c);
+        c.gridy=5;
+        c.ipady=2;
+        this.add(panelBouton,c);
         
         
-        this.add(labNomG);
+        
+/*        this.add(labNomG);
         this.add(txNomG);
-        //this.add(tabContact.getTableHeader());
+        this.add(tabContact.getTableHeader());
         this.add(tabContact);
-        this.add(zoneDessin);
+
+
         
-        /* Check box symboles */
-        symboleGroup = new ButtonGroup();
-        for (Symbole s : Symbole.values()){
-            checkboxes.put(s, new JCheckBox(s.toString()));
-            symboleGroup.add(checkboxes.get(s));
-            this.add(checkboxes.get(s));
-        }
+
         
         
 
         this.add(btValider);
-        this.add(btEffacer);
-                
-        /*this.add(new javax.swing.JButton("Hello !"));
-          this.add(new javax.swing.JLabel("Fiche groupe"));
-         */
-    }
+        this.add(btEffacer);*/
+        }
 
     /**
      * Affecte des valeurs au formulaire de fiche groupe de contacts
