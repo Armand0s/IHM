@@ -39,7 +39,7 @@ public class PlanningUI extends JPanel {
     private Controleur                 controleur;
     private FicheEvtUI                 ficheEvt;
     private JTextField                 calendar        = new CalendarUI();
-    private HashMap<Evenement,JButton> hashEvt         = new HashMap<>();
+    //private HashMap<Evenement,JButton> hashEvt         = new HashMap<>();
     
     private JPanel      panelCorpsCalendar;
     //                      calendar
