@@ -44,8 +44,8 @@ import javax.swing.event.ChangeListener;
 public class CalendarUI extends JTextField {
 
     private static String DEFAULT_DATE_FORMAT = "dd/MM/yyyy";
-    private static final int DIALOG_WIDTH = 200;
-    private static final int DIALOG_HEIGHT = 200;
+    private static final int DIALOG_WIDTH = 300;
+    private static final int DIALOG_HEIGHT = 300;
 
     private SimpleDateFormat dateFormat;
     private DatePanel datePanel = null;
@@ -244,7 +244,7 @@ public class CalendarUI extends JTextField {
                                 return;
                             }
                             dayColorUpdate(true);
-                            source.setForeground(todayBackColor);
+                            //source.setForeground(todayBackColor);
                             int newDay = Integer.parseInt(source.getText());
                             Calendar cal = getCalendar();
                             cal.set(Calendar.DAY_OF_MONTH, newDay);
