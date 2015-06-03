@@ -44,10 +44,6 @@ public class FicheContactUI extends JPanel {
     private JPanel           paneldispo;
     
     
-    private JList            listjour;
-    private JList            listmois;
-    private JList            listanne;
-    
     private JComboBox        list_jour;
     private JComboBox        list_mois;
     private JComboBox        list_annee;
