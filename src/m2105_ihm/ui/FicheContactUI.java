@@ -276,7 +276,7 @@ public class FicheContactUI extends JPanel {
         champPre.setText(contact.getPrenom());
         champTel.setText(contact.getNumeroTelephone());
         champE_M.setText(contact.getEmail());
-        list_jour.setSelectedItem("" +contact.getDateNaissanceJour());
+        list_jour.setSelectedItem(contact.getDateNaissanceJour());
         list_mois.setSelectedItem(contact.getDateNaissanceMois());
         list_annee.setSelectedItem("" +contact.getDateNaissanceAnnee());
         list_reg.setSelectedItem(contact.getRegion());
@@ -311,7 +311,7 @@ public class FicheContactUI extends JPanel {
         contact.setNom(champNom.getText());     
         contact.setPrenom(champPre.getText());
         
-        int jour = list_jour.getSelectedIndex()+1;
+        int jour = (int) list_jour.getSelectedItem();
         Mois mois = (Mois) list_mois.getSelectedItem();
         
         int annee = list_annee.getSelectedIndex() +1865;
@@ -326,9 +326,9 @@ public class FicheContactUI extends JPanel {
         for (Hobby h : contact.getHobbies()) {
             contact.removeHobby(h);
         }
-        for (Hobby h : contact.getHobbies()) {
-            if (hashHobby.get(h).isSelected()) {
-                contact.addHobby(h);
+        for (Hobby h : hashHobby.keySet()) {
+            if (hashHobby.get(h).isSelected()){
+            contact.addHobby(h);
             }
         }
         
