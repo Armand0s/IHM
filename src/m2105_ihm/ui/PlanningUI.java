@@ -52,8 +52,8 @@ public class PlanningUI extends JPanel {
     private JPanel              panelDateEvt = new JPanel();
     private JPanel              panelParticipants = new JPanel();
     private JPanel                  panelListeParticipant = new JPanel();
-    private JPanel test = new Cal();
-
+    private JPanel test =  new Cal();
+  
     
     /** 
      * Constructeur : initialise les composants de l'IHM pour les événements
@@ -81,7 +81,7 @@ public class PlanningUI extends JPanel {
         c.gridheight = 2;*/
         
         
-        
+   
         
     // this : BorderLayout
     panelCorpsCalendar.setLayout(new BorderLayout());               // WEST (with preferedSize)
@@ -97,7 +97,7 @@ public class PlanningUI extends JPanel {
                 panelListeParticipant.setLayout(new GridLayout());              // CENTER
 
     GridBagConstraints c = new GridBagConstraints();
-                c.fill = GridBagConstraints.HORIZONTAL;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx=1;
         c.ipady=100;
         c.gridx=1;
@@ -133,21 +133,27 @@ public class PlanningUI extends JPanel {
         panelCorpsCalendar.setPreferredSize(new Dimension(390,200));
     this.add(panelCorpsCalendar, BorderLayout.WEST);
         
-                
-                
-
-    /*
+    System.out.println(test.getComponents().length);
+    JPanel j = (JPanel) test.getComponent(0);
+    JLabel l = (JLabel) j.getComponent(j.getComponents().length-1);
+    System.out.println(l.getText());
     
-            
+
+    
+     /*     
+    
+    
     test.setPreferredSize(new Dimension(200,200));
     this.add(test);    
                 
-     */          
+      */         
                 
                 
        
         
     }  
+    
+    
     /**
      * Ajoute une entrée dans la liste de événements
      * @param title texte affiché dans la liste pour un contact
