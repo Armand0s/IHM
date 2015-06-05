@@ -1,46 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package m2105_ihm.ui;
 
-/*
- * Copyright (c) Ian F. Darwin, http://www.darwinsys.com/, 1996-2002.
- * All rights reserved. Software written by Ian F. Darwin and others.
- * $Id: LICENSE,v 1.8 2004/02/09 03:33:38 ian Exp $
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS''
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- * Java, the Duke mascot, and all variants of Sun's Java "steaming coffee
- * cup" logo are trademarks of Sun Microsystems. Sun's, and James Gosling's,
- * pioneering role in inventing and promulgating (and standardizing) the Java
- * language and environment is gratefully acknowledged.
- *
- * The pioneering role of Dennis Ritchie and Bjarne Stroustrup, of AT&amp;T, for
- * inventing predecessor languages C and C++ is also gratefully acknowledged.
- */
- 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -51,12 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
- 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
  
 
 public class Cal extends JPanel {
@@ -89,11 +49,14 @@ public class Cal extends JPanel {
  
   /** The year choice */
   private JComboBox yearChoice;
+  
+  
+  private JLabel dateSelected;
  
   /**
    * Construct a Cal, starting with today.
    */
-  Cal() {
+  public Cal() {
     super();
     setYYMMDD(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
         calendar.get(Calendar.DAY_OF_MONTH));
@@ -107,13 +70,28 @@ public class Cal extends JPanel {
    * @exception IllegalArgumentException
    *                If year out of range
    */
-  Cal(int year, int month, int today) {
+  public Cal(int year, int month, int today) {
     super();
     setYYMMDD(year, month, today);
     buildGUI();
     recompute();
   }
- 
+
+    public int getYy() {
+        return yy;
+    }
+
+    public int getMm() {
+        return mm;
+    }
+
+    public int getDd() {
+        return dd;
+    }
+
+
+
+  
   private void setYYMMDD(int year, int month, int today) {
     yy = year;
     mm = month;
@@ -152,7 +130,7 @@ public class Cal extends JPanel {
  
     tp.add(yearChoice = new JComboBox());
     yearChoice.setEditable(true);
-    for (int i = yy - 5; i < yy + 5; i++)
+    for (int i = yy - 50; i < yy + 50; i++)
       yearChoice.addItem(Integer.toString(i));
     yearChoice.setSelectedItem(Integer.toString(yy));
     yearChoice.addActionListener(new ActionListener() {
@@ -166,6 +144,9 @@ public class Cal extends JPanel {
         }
       }
     });
+    dateSelected = new JLabel();
+    tp.add(dateSelected);
+    
     add(BorderLayout.CENTER, tp);
  
     JPanel bp = new JPanel();
@@ -173,12 +154,12 @@ public class Cal extends JPanel {
     labs = new JButton[6][7]; // first row is days
  
     //bp.add(b0 = new JButton("S"));
-    bp.add(new JButton("Lun"));
-    bp.add(new JButton("Mar"));
-    bp.add(new JButton("Mer"));
-    bp.add(new JButton("Jeu"));
-    bp.add(new JButton("Ven"));
-    bp.add(new JButton("Sam"));
+    bp.add(new JButton("L"));
+    bp.add(new JButton("M"));
+    bp.add(new JButton("M"));
+    bp.add(new JButton("J"));
+    bp.add(new JButton("V"));
+    bp.add(new JButton("S"));
     bp.add(b0 = new JButton("D"));
  
     ActionListener dateSetter = new ActionListener() {
@@ -191,6 +172,7 @@ public class Cal extends JPanel {
           // fire some kind of DateChanged event here.
           // Also, build a similar daySetter for day-of-week btns.
           System.out.println("Day : " + dd + " : " + mm  + " : " + yy);
+          dateSelected.setText("Day : " + dd + " : " + mm  + " : " + yy);
         }
       }
     };
@@ -249,6 +231,10 @@ public class Cal extends JPanel {
       setDayActive(dd); // shade the box for today
  
     // Say we need to be drawn on the screen
+    
+    dateSelected.setText("Day : " + dd + " : " + mm  + " : " + yy);
+    
+    
     repaint();
   }
  
