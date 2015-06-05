@@ -55,13 +55,6 @@ public class PlanningUI extends JPanel {
     private JPanel test = new Cal();
 
     
-    /*private JPanel panelCentreCorps  = new JPanel();
-    private JPanel   panelDate    = new JPanel();
-    private JPanel   panelGauche     = new JPanel();
-    private JPanel   panelInfo    = new JPanel();
-    private JPanel   panelCorps   = new JPanel();*/
-    
-
     /** 
      * Constructeur : initialise les composants de l'IHM pour les événements
      * @param une instance du controleur
@@ -87,7 +80,7 @@ public class PlanningUI extends JPanel {
         c.gridy = 0;
         c.gridheight = 2;*/
         
-
+        
         
         
     // this : BorderLayout
@@ -102,25 +95,57 @@ public class PlanningUI extends JPanel {
             panelDateEvt.setLayout(new BorderLayout());                     // add height = 1
             panelParticipants.setLayout(new BorderLayout());                // add height = 3
                 panelListeParticipant.setLayout(new GridLayout());              // CENTER
+
+    GridBagConstraints c = new GridBagConstraints();
+                c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx=1;
+        c.ipady=100;
+        c.gridx=1;
+                
+
+        //panelCorpsCalendar.add(new JButton("test"));
+    panelCorpsEvt.add(new JButton("test"));    
+    //panelCorpsInfo.add(new JButton("test"));
+    panelDateActuelle.add(new JButton("test"));
+    //panelCorpsInfoEvt.add(new JButton("test"));
+    panelNomEvt.add(new JButton("test"));
+    panelDateEvt.add(new JButton("test"));
+    //panelParticipants.setBackground(Color.red);
+    panelListeParticipant.add(new JButton("test"));
+    
+    
+    
+    
+    test.setPreferredSize(new Dimension(390,250));
+                panelParticipants.add(new JLabel("Participants :"), BorderLayout.NORTH);
+                panelParticipants.add(panelListeParticipant, BorderLayout.CENTER);
+            panelCorpsInfoEvt.add(panelNomEvt,c);
+            panelCorpsInfoEvt.add(panelDateEvt,c);
+            c.ipady=300;
+            panelCorpsInfoEvt.add(panelParticipants,c);
+        panelCorpsInfo.add(panelDateActuelle, BorderLayout.NORTH);
+        panelCorpsInfo.add(panelCorpsInfoEvt, BorderLayout.CENTER);
+        panelCorpsInfo.setPreferredSize(new Dimension(200,200));
+    this.add(panelCorpsInfo, BorderLayout.EAST); 
+        panelCorpsCalendar.add(panelCorpsEvt, BorderLayout.CENTER);
         
+        panelCorpsCalendar.add(test, BorderLayout.NORTH);
+        panelCorpsCalendar.setPreferredSize(new Dimension(390,200));
+    this.add(panelCorpsCalendar, BorderLayout.WEST);
+        
+                
+                
+
+    /*
+    
+            
     test.setPreferredSize(new Dimension(200,200));
     this.add(test);    
                 
+     */          
                 
                 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+       
         
     }  
     /**
