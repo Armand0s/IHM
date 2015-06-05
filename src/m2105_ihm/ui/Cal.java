@@ -51,7 +51,7 @@ public class Cal extends JPanel {
   private JComboBox yearChoice;
   
   
-  private JLabel dateSelected;
+  public JLabel dateSelected;
  
   /**
    * Construct a Cal, starting with today.
@@ -77,17 +77,7 @@ public class Cal extends JPanel {
     recompute();
   }
 
-    public int getYy() {
-        return yy;
-    }
 
-    public int getMm() {
-        return mm;
-    }
-
-    public int getDd() {
-        return dd;
-    }
 
 
 
@@ -171,8 +161,8 @@ public class Cal extends JPanel {
           // When this becomes a Bean, you can
           // fire some kind of DateChanged event here.
           // Also, build a similar daySetter for day-of-week btns.
-          System.out.println("Day : " + dd + " : " + mm  + " : " + yy);
-          dateSelected.setText("Day : " + dd + " : " + mm  + " : " + yy);
+          //System.out.println("Day : " + dd + " : " + mm  + " : " + yy);
+          dateSelected.setText("Day : " + dd + " : " + (mm + 1)  + " : " + yy);
         }
       }
     };
@@ -203,7 +193,7 @@ public class Cal extends JPanel {
  
     // Compute how much to leave before the first.
     // getDay() returns 0 for Sunday, which is just right.
-    leadGap = new GregorianCalendar(yy, mm, 7).get(Calendar.DAY_OF_WEEK) - 1; // -2 pour commcner le lund -1 pour dimanche
+    leadGap = new GregorianCalendar(yy, mm, 7).get(Calendar.DAY_OF_WEEK) - 1;
     // System.out.println("leadGap = " + leadGap);
  
     int daysInMonth = dom[mm];
@@ -232,7 +222,7 @@ public class Cal extends JPanel {
  
     // Say we need to be drawn on the screen
     
-    dateSelected.setText("Day : " + dd + " : " + mm  + " : " + yy);
+    dateSelected.setText("Day : " + dd + " : " + (mm + 1)  + " : " + yy);
     
     
     repaint();
@@ -292,21 +282,15 @@ public class Cal extends JPanel {
     activeDay = newDay;
   }
  
-  /** La méthode principale*/
-  public static void main(String[] argv)
-  {
-    JFrame f = new JFrame("Mon Calendrier");
-    Container c = f.getContentPane();
-    c.setLayout(new FlowLayout());
- 
-    // Initialiser un calendrier avec la date suivant
-    c.add(new Cal(1990, 2, 15));
- 
-    // and beside it, the current month.
-    c.add(new Cal());
- 
-    f.pack();
-    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    f.setVisible(true);
-  }
+    public int getYy() {
+        return yy;
+    }
+
+    public int getMm() {
+        return mm;
+    }
+
+    public int getDd() {
+        return dd;
+    }
 }
