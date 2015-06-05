@@ -120,8 +120,8 @@ public class Cal extends JPanel {
     dd = today;
   }
  
-  String[] months = { "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December" };
+  String[] months = { "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin",
+      "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre" };
  
   /** Build the GUI. Assumes that setYYMMDD has been called. */
   private void buildGUI() {
@@ -190,6 +190,7 @@ public class Cal extends JPanel {
           // When this becomes a Bean, you can
           // fire some kind of DateChanged event here.
           // Also, build a similar daySetter for day-of-week btns.
+          System.out.println("Day : " + dd + " : " + mm  + " : " + yy);
         }
       }
     };
@@ -211,7 +212,7 @@ public class Cal extends JPanel {
  
   /** Compute which days to put where, in the Cal panel */
   protected void recompute() {
-    // System.out.println("Cal::recompute: " + yy + ":" + mm + ":" + dd);
+    //System.out.println("Cal::recompute: " + yy + ":" + mm + ":" + dd);
     if (mm < 0 || mm > 11)
       throw new IllegalArgumentException("Month " + mm
           + " bad, must be 0-11");
@@ -220,7 +221,7 @@ public class Cal extends JPanel {
  
     // Compute how much to leave before the first.
     // getDay() returns 0 for Sunday, which is just right.
-    leadGap = new GregorianCalendar(yy, mm, 1).get(Calendar.DAY_OF_WEEK) - 2; // -2 pour commcner le lund -1 pour dimanche
+    leadGap = new GregorianCalendar(yy, mm, 7).get(Calendar.DAY_OF_WEEK) - 1; // -2 pour commcner le lund -1 pour dimanche
     // System.out.println("leadGap = " + leadGap);
  
     int daysInMonth = dom[mm];
