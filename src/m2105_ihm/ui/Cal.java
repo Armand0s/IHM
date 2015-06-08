@@ -156,18 +156,15 @@ public class Cal extends JPanel {
       public void actionPerformed(ActionEvent e) {
         String num = e.getActionCommand();
         if (!num.equals("")) {
-          // set the current day highlighted
+          // Surligne le jour selectionné
           setDayActive(Integer.parseInt(num));
-          // When this becomes a Bean, you can
-          // fire some kind of DateChanged event here.
-          // Also, build a similar daySetter for day-of-week btns.
           //System.out.println("Day : " + dd + " : " + mm  + " : " + yy);
           dateSelected.setText("Day : " + dd + " : " + (mm + 1)  + " : " + yy);
         }
       }
     };
  
-    // Construct all the buttons, and add them.
+    // Construit les bouttons et les ajoutent
     for (int i = 0; i < 6; i++)
       for (int j = 0; j < 7; j++) {
         bp.add(labs[i][j] = new JButton(""));
@@ -177,9 +174,9 @@ public class Cal extends JPanel {
     add(BorderLayout.SOUTH, bp);
   }
  
-  public final static int dom[] = { 31, 28, 31, 30, /* jan feb mar apr */
-  31, 30, 31, 31, /* may jun jul aug */
-  30, 31, 30, 31 /* sep oct nov dec */
+  public final static int dom[] = { 31, 28, 31, 30, /* janvier fevrier mars avril */
+  31, 30, 31, 31, /* mai juin juillet aout */
+  30, 31, 30, 31 /* sepembre octobre novembre decembre */
   };
  
   /** Compute which days to put where, in the Cal panel */
