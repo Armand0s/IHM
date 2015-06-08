@@ -48,8 +48,8 @@ public class PlanningUI extends JPanel {
     //private JPanel              panelEvtSuite;
     private JPanel      evtUI = new FicheEvtUI(this);
    
-    private JPanel test =  new Cal();
-    private GregorianCalendar calend = new GregorianCalendar();
+    private Cal test =  new Cal();
+
   
     
     /** 
@@ -102,8 +102,8 @@ public class PlanningUI extends JPanel {
     
     
     
-    test.setPreferredSize(new Dimension(390,250));
-                
+    test.setPreferredSize(new Dimension(390,220));
+    
     this.add(evtUI, BorderLayout.EAST); 
         panelCorpsCalendar.add(panelCorpsEvt, BorderLayout.CENTER);
         
