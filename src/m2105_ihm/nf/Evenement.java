@@ -37,6 +37,14 @@ public class Evenement implements java.io.Serializable {
         this.participants = new ArrayList<Contact>();        
     }
     
+    public Evenement(String intitule, int jour, Mois mois, int annee) {
+        this.intitule = intitule;
+        this.dateJour = jour;
+        this.dateMois = mois;
+        this.dateAnnee = annee;        
+        this.participants = new ArrayList<Contact>();        
+    }
+    
     /**
      * Retourne l'intitulé de l'évènement
      * @return 
