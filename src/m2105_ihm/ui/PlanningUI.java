@@ -28,6 +28,7 @@ import javax.swing.tree.TreeSelectionModel;
 
 import m2105_ihm.Controleur;
 import m2105_ihm.nf.Evenement;
+import m2105_ihm.nf.NoyauFonctionnel;
 
 /**
  *
@@ -50,16 +51,17 @@ public class PlanningUI extends JPanel {
    
     private Cal test =  new Cal();
 
-  
+    private NoyauFonctionnel nf;
     
     /** 
      * Constructeur : initialise les composants de l'IHM pour les événements
      * @param une instance du controleur
      */
-    public PlanningUI(Controleur ctrl) {
+    public PlanningUI(Controleur ctrl, NoyauFonctionnel nf) {
         super();
         
         this.controleur = ctrl;
+        this.nf = nf;
         
         initComponents();        
     }
