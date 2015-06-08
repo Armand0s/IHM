@@ -14,6 +14,7 @@ import m2105_ihm.ui.CarnetUI;
 import m2105_ihm.ui.FenetreUI;
 import m2105_ihm.ui.PlanningUI;
 import m2105_ihm.ui.BoiteDialogUI;
+import m2105_ihm.ui.DialogCreerEvtUI;
 
 /**
  *
@@ -33,6 +34,7 @@ public class Controleur {
     private FenetreUI fenetre;
     private PlanningUI planningUI;
     private BoiteDialogUI boiteUI;
+    private DialogCreerEvtUI boiteEvtUI;
 
     /**
      * Constructeur de la fenêtre principale
@@ -104,8 +106,12 @@ public class Controleur {
      */
     public void creerEvenement() {
     
-       /** Projet **/
+       boiteEvtUI = new DialogCreerEvtUI(this);
        
+       if (boiteEvtUI.getEvt() != null) {
+        
+        nf.addEvenement(boiteEvtUI.getEvt());
+        }
     }
 
     /**
@@ -156,12 +162,13 @@ public class Controleur {
     private void initUI() {
         /* Onglets */
         carnetUI = new CarnetUI(this);
-        planningUI = new PlanningUI(this);
+        planningUI = new PlanningUI(this, nf);
 
         /* Fenêtre principale */
         fenetre = new FenetreUI(this);
         fenetre.addTab(carnetUI, "Carnet");     // onglet carnet
         fenetre.addTab(planningUI, "Planning"); // onglet planning
+        
         fenetre.afficher();
     }
         
