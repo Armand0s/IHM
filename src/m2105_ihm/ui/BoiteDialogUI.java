@@ -9,6 +9,7 @@ package m2105_ihm.ui;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import m2105_ihm.nf.Contact;
+import m2105_ihm.nf.Evenement;
 import m2105_ihm.nf.GroupeContacts;
 
 /**
@@ -84,5 +85,5 @@ public class BoiteDialogUI {
         /** TP5 : à compléter **/
         
         return res;
-    }    
+    } 
 }
