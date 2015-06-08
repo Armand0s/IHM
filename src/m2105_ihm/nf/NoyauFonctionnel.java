@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.LinkedList;
 
 /**
  *
@@ -26,7 +27,7 @@ public class NoyauFonctionnel {
     
     private ArrayList<Contact> contacts;
     private ArrayList<GroupeContacts> groupes;
-    private ArrayList<Evenement> evenements;
+    private LinkedList<Evenement> evenements;
 
     private String path = "";
 
@@ -175,15 +176,52 @@ public class NoyauFonctionnel {
      * @return 
      */
     public boolean addEvenement(Evenement e) {
-        boolean success = true;
+        boolean success = false;
 
         if ((e != null) && (evenements.indexOf(e) == -1)) {
             evenements.add(e);
+            trieEvenement();
             success = true;
         }
         
         return success;               
     }
+    
+    public boolean trieEvenement() {
+        boolean sucess = false;
+        
+        if (evenements.size() >=2) {
+            
+            
+
+
+            for(int i = 1; i< evenements.size()-1; i++) {
+                if (evtAvant(evenements.get(i-1),evenements.get(i))) {
+                    evenements.add(i-1, evenements.get(i));
+                    i = 1;
+                }
+            }
+        
+        }
+        
+        
+        return sucess;
+    }
+    
+    public boolean evtAvant(Evenement evt1, Evenement evt2) { // verifie que evt1 est avant evt2
+        if ((evt1.getDateAnnee() < evt2.getDateAnnee())  
+                || ((evt1.getDateAnnee() == evt2.getDateAnnee())
+                    && (evt1.getDateMois().compareTo(evt2.getDateMois()) < 0))
+                || (((evt1.getDateAnnee() == evt2.getDateAnnee())
+                    && (evt1.getDateMois().compareTo(evt2.getDateMois()) == 0))
+                        &&  evt1.getDateJour() < evt2.getDateJour())
+                ) {
+            return true;
+        } else {
+        return false;
+        }
+    }
+    
     
     /**
      * Retire un évènement de la liste
@@ -191,7 +229,7 @@ public class NoyauFonctionnel {
      * @return 
      */
     public boolean removeEvenement(Evenement e) {
-        boolean success = true;
+        boolean success = false;
 
         if ((e != null) && (evenements.indexOf(e) != -1)) {
             evenements.remove(e);
@@ -216,7 +254,7 @@ public class NoyauFonctionnel {
     private void newDB() {
         contacts = new ArrayList<Contact>();
         groupes = new ArrayList<GroupeContacts>();
-        evenements = new ArrayList<Evenement>();
+        evenements = new LinkedList<Evenement>();
     }
     
    /**
@@ -278,7 +316,7 @@ public class NoyauFonctionnel {
                 
                 contacts = (ArrayList<Contact>) ois.readObject();
                 groupes = (ArrayList<GroupeContacts>) ois.readObject();
-                evenements = (ArrayList<Evenement>) ois.readObject();
+                evenements = (LinkedList<Evenement>) ois.readObject();
             }             
             catch(Exception e) {
                 System.out.println("LOAD" + e);
