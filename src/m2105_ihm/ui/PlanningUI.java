@@ -12,14 +12,15 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 
-import javax.swing.JList;
-import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -45,14 +46,10 @@ public class PlanningUI extends JPanel {
     //                      calendar
     private JPanel          panelCorpsEvt= new JPanel();
     //private JPanel              panelEvtSuite;
-    private JPanel      panelCorpsInfo = new JPanel();
-    private JPanel          panelDateActuelle = new JPanel();
-    private JPanel          panelCorpsInfoEvt = new JPanel();
-    private JPanel              panelNomEvt = new JPanel();
-    private JPanel              panelDateEvt = new JPanel();
-    private JPanel              panelParticipants = new JPanel();
-    private JPanel                  panelListeParticipant = new JPanel();
+    private JPanel      evtUI = new FicheEvtUI(this);
+   
     private JPanel test =  new Cal();
+    private GregorianCalendar calend = new GregorianCalendar();
   
     
     /** 
@@ -88,13 +85,7 @@ public class PlanningUI extends JPanel {
         //      calendar                                                // NORTH
         panelCorpsEvt.setLayout(new GridLayout());                      // CENTER
             //JPanel              panelEvtSuite;                            // add
-    panelCorpsInfo.setLayout(new BorderLayout());                   // EAST
-        panelDateActuelle.setLayout(new BorderLayout());                // NORTH
-        panelCorpsInfoEvt.setLayout(new GridBagLayout());               // CENTER
-            panelNomEvt.setLayout(new BorderLayout());                      // add height = 1
-            panelDateEvt.setLayout(new BorderLayout());                     // add height = 1
-            panelParticipants.setLayout(new BorderLayout());                // add height = 3
-                panelListeParticipant.setLayout(new GridLayout());              // CENTER
+        
 
     GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -106,27 +97,14 @@ public class PlanningUI extends JPanel {
         //panelCorpsCalendar.add(new JButton("test"));
     panelCorpsEvt.add(new JButton("test"));    
     //panelCorpsInfo.add(new JButton("test"));
-    panelDateActuelle.add(new JButton("test"));
-    //panelCorpsInfoEvt.add(new JButton("test"));
-    panelNomEvt.add(new JButton("test"));
-    panelDateEvt.add(new JButton("test"));
-    //panelParticipants.setBackground(Color.red);
-    panelListeParticipant.add(new JButton("test"));
+
     
     
     
     
     test.setPreferredSize(new Dimension(390,250));
-                panelParticipants.add(new JLabel("Participants :"), BorderLayout.NORTH);
-                panelParticipants.add(panelListeParticipant, BorderLayout.CENTER);
-            panelCorpsInfoEvt.add(panelNomEvt,c);
-            panelCorpsInfoEvt.add(panelDateEvt,c);
-            c.ipady=300;
-            panelCorpsInfoEvt.add(panelParticipants,c);
-        panelCorpsInfo.add(panelDateActuelle, BorderLayout.NORTH);
-        panelCorpsInfo.add(panelCorpsInfoEvt, BorderLayout.CENTER);
-        panelCorpsInfo.setPreferredSize(new Dimension(200,200));
-    this.add(panelCorpsInfo, BorderLayout.EAST); 
+                
+    this.add(evtUI, BorderLayout.EAST); 
         panelCorpsCalendar.add(panelCorpsEvt, BorderLayout.CENTER);
         
         panelCorpsCalendar.add(test, BorderLayout.NORTH);
