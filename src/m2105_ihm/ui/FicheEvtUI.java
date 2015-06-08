@@ -35,6 +35,7 @@ public class FicheEvtUI extends javax.swing.JPanel {
      */
     private PlanningUI          planning;
     
+    
     private JPanel          panelDateActuelle = new JPanel();
     private JLabel              labelCurrentDate = new JLabel();
     private JPanel          panelCorpsInfoEvt = new JPanel();
@@ -80,7 +81,6 @@ public class FicheEvtUI extends javax.swing.JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                newEvt();
             }
         });
     
@@ -180,92 +180,8 @@ public class FicheEvtUI extends javax.swing.JPanel {
     }
     
     
-    public static Evenement newEvt() {
-        
-        final JFrame fenetre = new JFrame();
-        fenetre.setLayout(new BorderLayout());
-        final JPanel corps = new JPanel();
-        final GregorianCalendar g = new GregorianCalendar();
-        
-        fenetre.setSize(new Dimension(250,200));
 
-          Mois[] months = Mois.values();
-        
-          
-
-        corps.setLayout(new GridLayout(5,2));
-        corps.add(new JLabel("Nom"));
-        final JTextField nomEvt = new JTextField();
-        corps.add(nomEvt);
-        corps.add(new JLabel("Jour"));
-        final JComboBox comboJour = new JComboBox();
-        for (int i = 1; i< 31; i++) {
-            comboJour.addItem(Integer.toString(i));
-        }
-        corps.add(comboJour);
-        
-        
-        
-        
-        
-        corps.add(new JLabel("Mois"));
-        final JComboBox comboMois = new JComboBox();
-        for (Mois m : months) {
-            comboMois.addItem(m.toString());
-        }
-        corps.add(comboMois);
-        
-        
-        corps.add(new JLabel("Annee"));
-        final JComboBox comboAnnee = new JComboBox();
-        for (int i = g.get(Calendar.YEAR) - 50; i< g.get(Calendar.YEAR) +49; i++) {
-            comboAnnee.addItem(Integer.toString(i));
-        }
-        corps.add(comboAnnee);
-        
-
-        
-        final JButton butAnnuler = new JButton("Annuler");
-        final JButton butValider = new JButton("Valider");
-                
-        corps.add(butValider);
-        corps.add(butAnnuler);
-        
-        
-        fenetre.add(corps, BorderLayout.CENTER);
-        fenetre.add(new JLabel("                     Nouvel Evenement"), BorderLayout.NORTH);
-        
-        fenetre.setVisible(true);
-        
-        butValider.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Evenement evt = new Evenement(
-                nomEvt.getText(),
-                comboJour.getSelectedIndex() +1,
-                (Mois) comboMois.getSelectedItem(), // BUG
-                comboAnnee.getSelectedIndex() + 1965
-                );
-            }
-        });
-        
-        butAnnuler.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            fenetre.setVisible(false);
-            }
-        });
-        
-        
-        
-        
-        
-        return null;
-        
-        
-    }
+    
     
     
     
